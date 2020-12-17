@@ -6,24 +6,31 @@ CREATE database tracker_DB;
 USE tracker_DB;
 
 CREATE TABLE department (
-  id INT PRIMARY KEY NOT NULL,
-  name VARCHAR(30)
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE role (
-  id INT PRIMARY KEY NOT NULL,
-  title VARCHAR(30),
-  salary DECIMAL,
-  departmant_id INT
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  title VARCHAR(30) NOT NULL,
+  salary DECIMAL(10, 2) NOT NULL,
+  department_id INT(10) NOT NULL
 );
 
 CREATE TABLE employee (
-  id INT PRIMARY KEY NOT NULL,
-  first_name VARCHAR(30),
-  last_name VARCHAR(30),
-  role_id INT,
-  manager_id INT
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  role_id INT(10) NOT NULL,
+  manager_id INT(10) NOT NULL
 );
 
-SELECT * FROM department;
+INSERT INTO department (name)
+VALUES  ("Engineering"), ("Sales");
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Jr. Engineer", 70000.00, 1), ("Sr. Sales Rep", 80000.00, 2), ("Sr. Engineer", 90000.00, 1);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ("Eddie", "P", 1, 2), ("Mike", "J", 2, 3), ("Tim", "W", 3, 4 ), ("Danielle", "M", 4, 5), ("David", "L", 5, 6);
 
