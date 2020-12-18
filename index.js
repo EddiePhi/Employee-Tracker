@@ -37,9 +37,10 @@ function tracker() {
         "View departments",
         "View roles",
         "View employees",
-        "Update employee role"
+        "Update employee role",
+        "End application"
       ]
-    }) // Code that still needs work VVVVVVV
+    })
     .then(function(answer) {
       switch (answer.action) {
       case "Add department":
@@ -68,6 +69,11 @@ function tracker() {
 
       case "Update employee role":
         updateEmployeeRole();
+      break;
+
+      case "End":
+        console.log("Ending application. Thanks!");
+        connection.end();
       break;
       };
     })
