@@ -221,10 +221,9 @@ function updateEmployeeRole(){ // Week 12 Activity 10
       },
     ]).then(function (answer){
       function currentId(){
-        let returnId;
         for (let i = 0; i < results.length; i++) {
           if(answer.choice === results[i].first_name + " " + results[i].last_name){
-            return returnId = results[i].id;
+            return results[i].id;
           };
         };
       };
@@ -239,12 +238,12 @@ function updateEmployeeRole(){ // Week 12 Activity 10
           {
             id: currentId()
           }
-        ]), function(err, data) {
+        ], function(err, data) {
           if (err) throw err;
           console.log("Update successful.");
           console.table(data);
           tracker();
-        };
+        });
     });
   });
 };
