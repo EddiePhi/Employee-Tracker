@@ -38,6 +38,7 @@ function tracker() {
         "View roles",
         "View employees",
         "Update employee role",
+        "Delete employee",
         "End application"
       ]
     })
@@ -71,7 +72,11 @@ function tracker() {
         updateEmployeeRole();
       break;
 
-      case "End":
+      case "Delete employee":
+        deleteEmployee();
+      break;
+
+      case "End application":
         console.log("Ending application. Thanks!");
         connection.end();
       break;
@@ -233,8 +238,6 @@ function updateEmployeeRole(){ // Week 12 Activity 10
           };
         };
       };
-      console.log(currentId(), "232");
-      console.log(answer, results);
       const query = "UPDATE employee SET ? WHERE ?"
       connection.query(query, 
         [
@@ -247,10 +250,51 @@ function updateEmployeeRole(){ // Week 12 Activity 10
         ], function(err, data) {
           if (err) throw err;
           console.log("Update successful.");
-          console.table(data);
           tracker();
         });
     });
   });
 };
 
+function deleteEmployee(){
+  connection.query("SELECT * FROM employee", function(err, results) {
+    if (err) throw err;  
+    inquirer
+      .prompt(
+        [
+          {
+            name: "choice",
+            type: "list",
+            choices: function() {
+              const choiceArray = [];
+              for (let i = 0; i < results.length; i++) {
+                let fullName = results[i].first_name + " " + results[i].last_name
+                choiceArray.push(fullName);
+              }
+              return choiceArray;
+            },
+            message: "Choose employee:",
+          },
+        ])
+      .then((answer) => {
+        function currentId(){
+          for (let i = 0; i < results.length; i++) {
+            if(answer.choice === results[i].first_name + " " + results[i].last_name){
+              return results[i].id;
+            };
+          };
+        };
+        const query = "DELETE FROM employee WHERE ?"
+        connection.query(query, 
+          [
+            {
+              id: currentId()
+            }
+          ], function(err, data) {
+            if (err) throw err;
+            console.log("Delete successful.");
+            tracker();
+          });
+      });
+  });
+};
