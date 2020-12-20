@@ -100,7 +100,7 @@ function addDepartment(){
         }, 
         function(data) {
         console.log("Department added.");
-        tracker();
+        viewDepartment();
       });
     })
     .catch((err) => console.error(err))
@@ -135,7 +135,7 @@ function addRole(){
         function(err, data) {
           if (err) throw err;
           console.log("Role added.");
-          tracker();
+          viewRole();
       });
     });
 };
@@ -193,7 +193,7 @@ function viewRole(){
   const query = "SELECT * FROM role";
   connection.query(query, function(err, data) {
     if (err) throw err;
-      console.table(data);
+    console.table(data);
     tracker();
   });
 };
@@ -207,7 +207,7 @@ function viewEmployee(){
   });
 };
 
-function updateEmployeeRole(){ // Week 12 Activity 10
+function updateEmployeeRole(){ // Reference to Week 12 Activity 10
   connection.query("SELECT * FROM employee", function(err, results) {
     if (err) throw err;
     inquirer
@@ -250,12 +250,13 @@ function updateEmployeeRole(){ // Week 12 Activity 10
         ], function(err, data) {
           if (err) throw err;
           console.log("Update successful.");
-          tracker();
+          viewEmployee();
         });
     });
   });
 };
 
+// Testing Delete functionality.
 function deleteEmployee(){
   connection.query("SELECT * FROM employee", function(err, results) {
     if (err) throw err;  
@@ -293,7 +294,7 @@ function deleteEmployee(){
           ], function(err, data) {
             if (err) throw err;
             console.log("Delete successful.");
-            tracker();
+            viewEmployee();
           });
       });
   });
