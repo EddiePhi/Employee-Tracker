@@ -175,7 +175,7 @@ function addEmployee(){
         function(err, data) {
           if (err) throw err;
           console.log("Employee added.");
-          tracker();
+          viewEmployee();
       });
     })
 };
