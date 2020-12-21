@@ -2,13 +2,10 @@
 
 -------------------------------------------------- Personal Notes -------------------------------------------------
 
-Video Demonstration Link: 
+Video Demonstration Link: https://drive.google.com/file/d/1az-O_2mRwmUulTvwRQJC80dtocG6dQmV/view 
 
 Description:
 I developed the a Content Management Systems CLI app. Users can add departments, job roles, and employees. Additionally, they can view departments, job roles, and employees. Employee job roles can also be updated.
-
-Screenshot:
-![Note Taker](./assets/eddiephi-note-taker.herokuapp.com_notes.png)
 
 Technologies: JavaScript, Node.js, NPM (mysql, inquirer), MySQL
 
